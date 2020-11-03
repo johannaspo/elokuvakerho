@@ -6,9 +6,14 @@
         </head>
 
         <body>
-            {% block body %}
-                <p>
-                </p>
-            {% endblock %}
+            <ul>
+                <li><a href="{{ url_for('index') }}">Etusivu</a></li>
+                <li><a href="{{ url_for('new') }}">Lisää elokuva</a></li>
+            </ul>
+        {% block body %}
+            <p>
+	
+            </p>
+        {% endblock %}
         </body>
     </html>
