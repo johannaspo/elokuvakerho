@@ -63,3 +63,26 @@ def submit():
         db.session.execute(sql, {'name':name, 'genre':genre, 'release_year':release_year, 'description':description})
         db.session.commit()
         return render_template('success.html')
+
+@app.route('/movies')
+def movies():
+    sql = "SELECT id, name, release_year FROM film ORDER BY name ASC"
+    result = db.session.execute(sql)
+    movies = result.fetchall()
+    return render_template("movies.html", movies=movies)
+
+@app.route("/movie/<int:id>")
+def movie(id):
+    sql = "SELECT name FROM film WHERE id=:id"
+    result = db.session.execute(sql, {"id":id})
+    name = result.fetchone()[0]
+    sql = "SELECT genre FROM film WHERE id=:id"
+    result = db.session.execute(sql, {"id":id})
+    genre = result.fetchone()[0]
+    sql = "SELECT release_year FROM film WHERE id=:id"
+    result = db.session.execute(sql, {"id":id})
+    release_year = result.fetchone()[0]
+    sql = "SELECT description FROM film WHERE id=:id"
+    result = db.session.execute(sql, {"id":id})
+    description = result.fetchone()[0]
+    return render_template("movie.html", id=id, name=name, genre=genre, release_year=release_year, description=description)

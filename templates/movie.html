@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h3>Nimi: </h3>  {{ name }}
+<h3>Julkaisuvuosi: </h3> {{ release_year}}
+<h3>Genre: </h3> {{ genre }}
+<h3>Kuvaus: </h3> {{ description}}
+<a href="{{ url_for('movies') }}">Takaisin</a>
+
+{% endblock %}
