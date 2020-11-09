@@ -5,6 +5,12 @@
 <h3>Julkaisuvuosi: </h3> {{ release_year}}
 <h3>Genre: </h3> {{ genre }}
 <h3>Kuvaus: </h3> {{ description}}
+<h3>Lainassa: </h3> {{ available }}
+{% if button %}
+    <form action="{{ id }}/loan" method="POST" >
+        <input type="submit" value="Lainaa" class="btn" />
+    </form>
+{% endif %}
 <a href="{{ url_for('movies') }}">Takaisin</a>
 
 {% endblock %}

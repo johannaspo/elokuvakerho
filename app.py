@@ -85,4 +85,22 @@ def movie(id):
     sql = "SELECT description FROM film WHERE id=:id"
     result = db.session.execute(sql, {"id":id})
     description = result.fetchone()[0]
-    return render_template("movie.html", id=id, name=name, genre=genre, release_year=release_year, description=description)
+    sql = "SELECT member_id FROM film WHERE id=:id"
+    result = db.session.execute(sql, {"id":id})
+    if result.fetchone()[0] == None:
+        available = 'Ei'
+        button = 'yes'
+        return render_template("movie.html", id=id, name=name, genre=genre, release_year=release_year, description=description, available=available, button=button)
+    else:
+        available = 'Kyllä'
+        return render_template("movie.html", id=id, name=name, genre=genre, release_year=release_year, description=description, available=available)
+
+@app.route('/movie/<int:id>/loan', methods=['POST'])
+def loan(id):
+    if request.method == 'POST':
+        
+        username = session['username']
+        sql = 'UPDATE film SET (member_id) = (SELECT id FROM member WHERE username =:username) WHERE id =:id'
+        db.session.execute(sql, {"username":username, "id":id})
+        db.session.commit()
+        return render_template('reservation.html')

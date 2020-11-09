@@ -1,6 +1,7 @@
+{% extends "layout.html" %}
 {% block body %}
     <h2>Elokuvat</h2>
     {% for movie in movies %}
-    <a href="movie/{{ movie.id }}">{{ movie.name }}, {{ movie.release_year }}</a> <br>
+    <a href="movie/{{ movie.id }}">{{ movie.name }} ({{ movie.release_year }})</a> <br>
     {% endfor %}
 {% endblock %}
