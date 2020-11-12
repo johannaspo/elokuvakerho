@@ -2,14 +2,16 @@
     <html>
         <head>
             <meta charset="utf-8">
-            <title>Huitsin Nevadan elokuvakerho</title>
+            <title>Huitsin Nevadan yliopiston elokuvakerho</title>
         </head>
 
         <body>
+            <h1>Huitsin Nevadan yliopiston elokuvakerho</h1>
             <ul>
                 <li><a href="{{ url_for('index') }}">Etusivu</a></li>
-                <li><a href="{{ url_for('new') }}">Lisää elokuva</a></li>
                 <li><a href="{{ url_for('movies') }}">Elokuvat</a></li>
+                <li><a href="{{ url_for('member',  username=session.username) }}">Omat sivut</a></li>
+                <li><a href="{{ url_for('admin' }}">Admin</a></li>
             </ul>
         {% block body %}
             <p>

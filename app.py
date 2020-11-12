@@ -104,3 +104,19 @@ def loan(id):
         db.session.execute(sql, {"username":username, "id":id})
         db.session.commit()
         return render_template('reservation.html')
+    
+@app.route("/member/<username>")
+def member(username):
+    sql = "SELECT name FROM member WHERE username=:username"
+    result = db.session.execute(sql, {"username":username})
+    name = result.fetchone()[0]
+    sql = "SELECT email FROM member WHERE username=:username"
+    result = db.session.execute(sql, {"username":username})
+    email = result.fetchone()[0]
+    sql = "SELECT id FROM member WHERE username=:username"
+    result = db.session.execute(sql, {"username":username})
+    id = result.fetchone()[0]
+    sql = "SELECT name FROM film WHERE member_id=:id "
+    result = db.session.execute(sql, {"id":id})
+    movies = result.fetchall()
+    return render_template("member.html", id=id, name=name, username=username, email=email, movies=movies)
