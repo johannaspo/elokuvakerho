@@ -5,8 +5,8 @@
 <h3>Käyttäjatunnus: </h3>  {{ username }}
 <h3>Sähköposti: </h3> {{ email }}
 <h3>Lainassa: </h3>
-{% for movie in movies %}
-    {{ movie.name }} </br>
+{% for film in films %}
+    {{ film.name }} </br>
 {% endfor %}
 <!-- <h3>Vaihda salasana</h3>
     <form action="{{ id }}/change-password" method="POST" >

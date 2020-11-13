@@ -2,7 +2,6 @@
 {% extends "layout.html" %}
 {% block body %}
     <p>Olet kirjautunut nimellä {{ session.username }}</p>
-    <a href="/logout">Kirjaudu ulos</a>
 {% endblock %}
 {% else %}
     <form action="/login" method="POST">

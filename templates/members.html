@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block body %}
+    <h2>Jäsenet</h2>
+    {% for member in members %}
+    <a href="member/{{ member.username }}">{{ member.username }}</a> <br>
+    {% endfor %}
+    <a href="{{url_for('add')}}">Lisää jäsen</a>
+{% endblock %}
+   
+    
+
