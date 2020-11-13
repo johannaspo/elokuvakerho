@@ -113,7 +113,7 @@ def reviews(id):
     sql = "SELECT name FROM films WHERE id=:id"
     result = db.session.execute(sql, {"id":id})
     name = result.fetchone()[0]
-    sql = "SELECT TO_CHAR(timestamp, 'DD/MM/YYYY HH24.MI'), username, stars, text FROM reviews WHERE film_id=:id ORDER BY timestamp DESC"
+    sql = "SELECT TO_CHAR(timestamp, 'DD/MM/YYYY HH24.MI') as date, username, stars, text FROM reviews WHERE film_id=:id ORDER BY timestamp DESC"
     result = db.session.execute(sql, {"id":id})
     reviews = result.fetchall()
     sql = "SELECT COUNT(stars) FROM reviews WHERE film_id=:id"
