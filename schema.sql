@@ -22,5 +22,5 @@ CREATE TABLE reviews (
     username TEXT,
     stars INTEGER,
     text TEXT,
-    "timestamp" timestamp with time zone DEFAULT CURRENT_TIMESTAMP
+    timestamp TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
 );
