@@ -11,7 +11,9 @@
                 <li><a href="{{ url_for('index') }}">Etusivu</a></li>
                 <li><a href="{{ url_for('films') }}">Elokuvat</a></li>
                 <li><a href="{{ url_for('member',  username=session.username) }}">Omat sivut</a></li>
-                <li><a href="{{ url_for('admin') }}">Admin</a></li>
+                {% if session.show_admin %}
+                    <li><a href="{{ url_for('admin') }}">Admin</a></li>
+                {% endif %}
                 <li><a href="{{ url_for('logout') }}">Kirjaudu ulos</a></li>
 
             </ul>

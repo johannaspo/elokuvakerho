@@ -1,4 +1,17 @@
+{% if session.username %}
 {% extends "layout.html" %}
 {% block body %}
-    <p>Olet kirjautunut nimellä </p>
+    <p>Olet kirjautunut nimellä {{ session.username }}</p>
 {% endblock %}
+{% else %}
+    <form action="/login" method="POST">
+        {% if message %}
+            <p class="message">{{ message | safe }}</p>
+        {% endif %}
+        <p>Tunnus:<br>
+        <input type="text" name="username"></p>
+        <p>Salasana:<br>
+        <input type="password" name="password"></p>
+        <input type="submit" value="Kirjaudu">
+    </form>
+{% endif %}
