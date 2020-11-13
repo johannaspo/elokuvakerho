@@ -10,6 +10,11 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
 
+hash_value = generate_password_hash('password')
+sql = "INSERT INTO member (username, password, role) VALUES (:username, :password, :admin)"
+db.session.execute(sql, {"username":'username', "password":hash_value, "admin":admin})
+db.session.commit()
+
 @app.route("/")
 def index():
     return render_template("index.html")
