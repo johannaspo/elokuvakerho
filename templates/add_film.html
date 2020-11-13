@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
+{% if session.show_admin %}
 <div class ="container">
     {% if message %}
         <p class="message">{{ message | safe }}</p>
@@ -26,4 +27,8 @@
         <input type="submit" value="Lisää elokuva" class="btn" />
     </form>
 </div>
+{% else %}
+<h2>Ei oikeuksia</h2>
+{% endif %}
+{% endblock %}
 {% endblock %}
