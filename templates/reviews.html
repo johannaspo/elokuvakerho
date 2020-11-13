@@ -24,7 +24,7 @@
 <h4>Arvostelut </h4>
 <p>{{ message | safe }}</p>
 {% for review in reviews %}
-    {{ review.date }}</br>
+    {{ review.timestamp }}</br>
     Arvostelija: {{ review.username }} </br>
     Tähdet: {{ review.stars }} </br>
     {{ review.text }} <hr>

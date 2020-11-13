@@ -113,7 +113,7 @@ def reviews(id):
     sql = "SELECT name FROM films WHERE id=:id"
     result = db.session.execute(sql, {"id":id})
     name = result.fetchone()[0]
-    sql = "SELECT TO_CHAR(timestamp, 'DD/MM/YYYY HH24.MI') as date, username, stars, text FROM reviews WHERE film_id=:id ORDER BY timestamp DESC"
+    sql = "SELECT DATE_TRUNC('second', timestamp::timestamp) as timestamp, username, stars, text FROM reviews WHERE film_id=:id ORDER BY timestamp DESC"
     result = db.session.execute(sql, {"id":id})
     reviews = result.fetchall()
     sql = "SELECT COUNT(stars) FROM reviews WHERE film_id=:id"
@@ -196,7 +196,7 @@ def submit_member():
 
 @app.route("/loans")
 def loans():
-    sql = "SELECT id, name, release_year FROM films WHERE member_id IS NOT NULL ORDER BY name ASC"
+    sql = "SELECT F.id, F.name, F.release_year, M.username FROM films F, members M WHERE F.member_id = M.id ORDER BY F.name ASC"
     result = db.session.execute(sql)
     films = result.fetchall()
     return render_template("loans.html", films=films)
