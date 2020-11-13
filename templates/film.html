@@ -5,11 +5,13 @@
 <h3>Julkaisuvuosi: </h3> {{ release_year}}
 <h3>Genre: </h3> {{ genre }}
 <h3>Kuvaus: </h3> {{ description}}
-<h3>Lainassa: </h3> {{ available }}
-{% if button %}
+<h3>Lainassa: </h3> {{ checked_out }}
+{% if checked_out == "Ei" %}
     <form action="{{url_for('loan') }}" method="POST" >
         <button type="submit" name="loan_film" value="{{ id }}">Lainaa</button>
     </form>
 {% endif %}
+<br>
+<a href="{{ id }}/reviews">Arvostele ja lue arvostelut</a>
 
 {% endblock %}

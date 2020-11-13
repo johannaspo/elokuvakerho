@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h3>{{ name }} </h3>
+<h4>Arvostele elokuva </h4>
+<form action="{{url_for('review_film')}}" method="POST">
+    <div class="form-group">
+        <p>Tähdet: 
+            <select name ="stars">
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3</option>
+                <option value=4>4</option>
+                <option value=5>5</option>
+            </select>
+        </p>
+    </div>
+    <div class="form-group">
+        <p>Arvostelu:<p>
+        <textarea name="text" id="" cols="30" rows="10"></textarea>
+    </div>
+    <button type="submit" name="film_id" value="{{ id }}">Lähetä</button>
+</form>
+<h4>Arvostelut </h4>
+<p>{{ message | safe }}</p>
+{% for review in reviews %}
+    {{ review.date }}</br>
+    Arvostelija: {{ review.username }} </br>
+    Tähdet: {{ review.stars }} </br>
+    {{ review.text }} <hr>
+{% endfor %}
+
+{% endblock %}
