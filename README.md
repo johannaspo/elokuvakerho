@@ -18,10 +18,9 @@ Lisäksi sivuston ylläpitäjät voivat:
 
 Sovellus löytyy osoitteesta https://elokuvakerho.herokuapp.com/
 
-Kirjautua voi joko admin-käyttäjänä (tunnus ja salasana admin) tai tavallisena käyttäjänä (tunnus ja salasana jasen). Kaikki yllä luetellut toiminnot löytyvät sovelluksesta, paitsi elokuvan lainaajan tarkasteleminen. Tällä hetkellä sovelluksen käyttömukavuus on valitettavasti nollissa, koska sen ulkoasua ja käytettävyyttä ei ole vielä mietitty ollenkaan.
+Kirjautua voi joko admin-käyttäjänä (tunnus ja salasana admin) tai tavallisena käyttäjänä (tunnus ja salasana jasen). Kaikki yllä luetellut toiminnot löytyvät sovelluksesta. Tällä hetkellä sovelluksen käyttömukavuus on valitettavasti nollissa, koska sen ulkoasua ja käytettävyyttä ei ole vielä mietitty ollenkaan.
 
 TODO ainakin
-- kenellä elokuva on lainassa loans-sivulle
 - sovelluksen rakenne, eli koodin jako tiedostoihin
 - tyylin tarkistaminen
 - ulkoasu ja käytettävyys (joihin ei ole vielä siis kiinnitetty lainkaan huomiota)
