@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<h3>{{ name }} </h3>
+<h3>{{ film_name }} </h3>
 <h4>Arvostele elokuva </h4>
 <form action="{{url_for('review_film')}}" method="POST">
     <div class="form-group">
@@ -24,7 +24,7 @@
 <h4>Arvostelut </h4>
 <p>{{ message | safe }}</p>
 {% for review in reviews %}
-    {{ review.timestamp }}</br>
+    {{ review.date }}</br>
     Arvostelija: {{ review.username }} </br>
     Tähdet: {{ review.stars }} </br>
     {{ review.text }} <hr>

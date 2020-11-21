@@ -4,7 +4,7 @@
     {% for member in members %}
     <a href="member/{{ member.username }}">{{ member.username }}</a> <br>
     {% endfor %}
-    <a href="{{url_for('add')}}">Lisää jäsen</a>
+    <a href="{{url_for('add_member')}}">Lisää jäsen</a>
 {% endblock %}
    
     
