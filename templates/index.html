@@ -4,14 +4,21 @@
     <p>Olet kirjautunut nimellä {{ session.username }}</p>
 {% endblock %}
 {% else %}
-    <form action="/login" method="POST">
-        {% if message %}
-            <p class="message">{{ message | safe }}</p>
-        {% endif %}
+    {% if message %}
+    <p class="message">{{ message | safe }}</p>
+    {% endif %}
+    <form action="/" method="POST" novalidate>
+        {{ form.csrf_token }}
         <p>Tunnus:<br>
-        <input type="text" name="username"></p>
+        {{ form.username }}
+        {% for error in form.username.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}</p>
         <p>Salasana:<br>
-        <input type="password" name="password"></p>
-        <input type="submit" value="Kirjaudu">
+        {{ form.password }}
+        {% for error in form.password.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}</p>
+        {{ form.submit }}
     </form>
 {% endif %}

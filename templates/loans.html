@@ -6,6 +6,7 @@
     <a href="film/{{ film.id }}">{{ film.name }} ({{ film.release_year }})</a> <br>
     <form action="{{url_for('return_loan') }}" method="POST" >
         <button type="submit" name="id" value="{{ film.id }}">Palauta</button>
+        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
     </form>
     {% endfor %}
 {% endblock %}

@@ -2,47 +2,37 @@ from app import app
 import login_module, film_module, member_module, loan_module, review_module
 from flask import redirect, render_template, request, session, url_for
 from werkzeug.security import check_password_hash, generate_password_hash
+from forms import LoginForm, AddFilmForm, ReviewForm, AddMemberForm
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def index():
-    return render_template("index.html")
-
-@app.route("/login", methods=["POST"])
-def login():
-    if request.method == "POST":
+    form = LoginForm()
+    if form.validate_on_submit():
         username = request.form["username"]
         password = request.form["password"]
     
         if login_module.login(username, password):
             return redirect("/")
         else:
-            return render_template("index.html", message="Väärä käyttäjä tai salasana")
+            return render_template("index.html", form=form, message="Väärä käyttäjä tai salasana")
+    return render_template("index.html", form=form)
 
 @app.route("/logout")
 def logout():
     login_module.logout()
     return redirect("/")
 
-@app.route("/films/add_film")
+@app.route("/films/add_film", methods=["GET", "POST"])
 def add_film():
-    return render_template("add_film.html")
-
-@app.route("/films/submit_film", methods=["POST"])
-def submit_film():
-    if request.method == "POST":
+    form = AddFilmForm()
+    if form.validate_on_submit():
         name = request.form["name"]
         genre = request.form["genre"]
         release_year = request.form["release_year"]
         description = request.form["description"]
-
-        if int(release_year) < 0:
-            return render_template("add_film.html", message="Vuosi ei voi olla negatiivinen")
-        
-        if name == "" or genre == "" or release_year == "" or description == "":
-            return render_template("add_film.html", message="Täytä kaikki kentät")
-
-        film_module.submit_film(name, genre, release_year, description)
+        film_module.add_film(name, genre, release_year, description)
         return render_template("success.html", message="Elokuva lisätty!")
+    return render_template("add_film.html", form=form)
 
 @app.route("/films")
 def films():
@@ -60,6 +50,8 @@ def film(id):
     
 @app.route("/films/loan", methods=["POST"])
 def loan():
+    if session["csrf_token"] != request.form["csrf_token"]:
+        abort(403)
     if request.method == "POST":
         id = request.form["loan_film"]
         username = session["username"]
@@ -72,7 +64,8 @@ def reviews(id):
     film_name = review_module.get_reviews_film_name(id)
     reviews = review_module.get_reviews(id)
     message = review_module.get_reviews_stats_message(id)
-    return render_template("reviews.html", film_name=film_name, reviews=reviews, id=id, message=message)
+    form = ReviewForm(film_id = id)
+    return render_template("reviews.html", film_name=film_name, reviews=reviews, id=id, message=message, form=form)
 
 @app.route("/films/review_film", methods=["POST"])
 def review_film():
@@ -101,25 +94,18 @@ def members():
     members = member_module.get_member_list()
     return render_template("members.html", members=members)
 
-@app.route("/members/add_member")
+@app.route("/members/add_member", methods=["GET", "POST"])
 def add_member():
-    return render_template("add_member.html")
-
-@app.route("/members/submit_member", methods=["POST"])
-def submit_member():
-    if request.method == "POST":
+    form = AddMemberForm()
+    if form.validate_on_submit():
         name = request.form["name"]
         username = request.form["username"]
         password = generate_password_hash(request.form["password"])
         email = request.form["email"]
         role = request.form["role"]
-        
-        if name == "" or username == "" or password == "" or email == "" or role == "":
-            return render_template("add_member.html", message="Täytä kaikki kentät")
-        
         member_module.submit_member(name, username, password, email, role)
-        message = "Jäsen lisätty!"
-        return render_template("success.html", message=message)
+        return render_template("success.html", message="Jäsen lisätty!")
+    return render_template("add_member.html", form=form)
 
 @app.route("/loans")
 def loans():
@@ -128,6 +114,8 @@ def loans():
 
 @app.route("/loans/return_loan", methods=["POST"])
 def return_loan():
+    if session["csrf_token"] != request.form["csrf_token"]:
+        abort(403)
     if request.method == "POST":
         id = request.form["id"]
         loan_module.return_loan(id)

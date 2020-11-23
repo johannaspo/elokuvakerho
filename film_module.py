@@ -1,6 +1,6 @@
 from db import db
 
-def submit_film(name, genre, release_year, description):
+def add_film(name, genre, release_year, description):
         sql = "INSERT INTO films (name, genre, release_year, description) " \
               "VALUES (:name, :genre, :release_year, :description)"
         db.session.execute(sql, {"name":name, "genre":genre, "release_year":release_year, "description":description})

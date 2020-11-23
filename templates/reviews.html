@@ -4,22 +4,23 @@
 <h3>{{ film_name }} </h3>
 <h4>Arvostele elokuva </h4>
 <form action="{{url_for('review_film')}}" method="POST">
+    {{ form.csrf_token }}
     <div class="form-group">
         <p>Tähdet: 
-            <select name ="stars">
-                <option value=1>1</option>
-                <option value=2>2</option>
-                <option value=3>3</option>
-                <option value=4>4</option>
-                <option value=5>5</option>
-            </select>
+            {% for subfield in form.stars %}
+                <tr>
+                    <td>{{ subfield }}</td>
+                    <td>{{ subfield.label }}</td>
+                </tr>
+            {% endfor %}
         </p>
     </div>
     <div class="form-group">
         <p>Arvostelu:<p>
-        <textarea name="text" id="" cols="30" rows="10"></textarea>
+        {{ form.text }}
     </div>
-    <button type="submit" name="film_id" value="{{ id }}">Lähetä</button>
+    {{ form.film_id }}
+    {{ form.submit }}
 </form>
 <h4>Arvostelut </h4>
 <p>{{ message | safe }}</p>

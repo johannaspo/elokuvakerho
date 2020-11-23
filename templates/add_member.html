@@ -3,33 +3,57 @@
 {% block body %}
 {% if session.show_admin %}
 <div class ="container">
-    {% if message %}
-        <p class="message">{{ message | safe }}</p>
-    {% endif %}
     <p>Kaikki kentät tulee täyttää</p>
-    <form action="/members/submit_member" method="POST">
+    <form action="/members/add_member" method="POST" novalidate>
+        {{ form.csrf_token }}
         <div class="form-group">
             <h3>Nimi:</h3>
-            <input type="text" name="name">
+            {{ form.name }}
+            {% for error in form.name.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}</p>
         </div>
         <div class="form-group">
             <h3>Käyttäjänimi:</h3>
-            <input type="text" name="username">
+            {{ form.username }}
+            {% for error in form.username.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}</p>
         </div>
         <div class="form-group">
             <h3>Salasana:</h3>
-            <input type="password" name="password">
+            {{ form.password }}
+            {% for error in form.password.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}</p>
+        </div>
+        <div class="form-group">
+            <h3>Toista salasana:</h3>
+            {{ form.confirm_password }}
+            {% for error in form.confirm_password.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}</p>
         </div>
         <div class="form-group">
             <h3>Sähköposti:</h3>
-            <input type="email" name="email">
+            {{ form.email }}
+            {% for error in form.email.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}</p>
         </div>
         <div class="form-group">
             <h3>Admin:</h3>            
-            <input type="radio" name="role" value="user" checked> Ei <br>
-            <input type="radio" name="role" value="admin"> Kyllä <br>
+            {% for subfield in form.role %}
+                <tr>
+                    <td>{{ subfield }}</td>
+                    <td>{{ subfield.label }}</td>
+                </tr>
+            {% endfor %}
+            {% for error in form.role.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}</p>
         </div>
-        <input type="submit" value="Lisää jäsen" class="btn" />
+        {{ form.submit }}
     </form>
 </div>
 {% else %}
