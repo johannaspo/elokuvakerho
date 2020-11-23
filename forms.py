@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
+import member_module
 from wtforms import StringField, PasswordField, IntegerField, TextAreaField, SubmitField, RadioField, HiddenField
-from wtforms.validators import DataRequired, NumberRange, EqualTo, Email, Length
+from wtforms.validators import DataRequired, NumberRange, EqualTo, Email, Length, ValidationError
 
 class LoginForm(FlaskForm):
     username = StringField("username", validators=[DataRequired(message="Tunnus vaaditaan")])
@@ -21,10 +22,15 @@ class ReviewForm(FlaskForm):
     film_id = HiddenField("film_id")
     submit = SubmitField("Lähetä")
 
+def validate_username(form, username):
+    if member_module.duplicate_member:
+        raise ValidationError("Käyttäjänimi on jo käytössä")
+
 class AddMemberForm(FlaskForm):
     name = StringField("name", validators=[DataRequired(message="Nimi vaaditaan")])
     username = StringField("username", validators=[DataRequired(message="Käyttäjänimi vaaditaan"),
-        Length(min=4, message="Käyttäjänimen on oltava vähintään 4 merkkiä pitkä")]) 
+        Length(min=4, message="Käyttäjänimen on oltava vähintään 4 merkkiä pitkä"),
+        validate_username]) 
     password = PasswordField("password", validators=[
         DataRequired(message="Salasana vaaditaan"), 
         Length(min=5, message="Salasanan on oltava vähintään 5 merkkiä pitkä"),
@@ -33,4 +39,5 @@ class AddMemberForm(FlaskForm):
     email = StringField("email", validators=[DataRequired(message="Sähköposti vaaditaan"), Email("Anna sähköposti oikeassa muodossa")])
     role = RadioField("admin", choices=[("user","Ei"),("admin","Kyllä")], default="user", validators=[DataRequired()])
     submit = SubmitField("Lisää jäsen")
+
     

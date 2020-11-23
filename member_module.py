@@ -31,3 +31,9 @@ def submit_member(name, username, password, email, role):
               "VALUES (:name, :username, :password, :email, :role)"
     db.session.execute(sql, {"name":name, "username":username, "password":password, "email":email, "role":role})
     db.session.commit()
+
+def duplicate_member(username):
+    sql = "SELECT username FROM members"
+    result = db.session.execute(sql)
+    if (result.fetchone[0] == None):
+        return false
