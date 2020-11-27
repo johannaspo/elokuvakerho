@@ -1,7 +1,12 @@
 {% extends "layout.html" %}
-
 {% block body %}
-<div class ="container">
-    <h2>{{ message | safe }}</h2>
+<div class="wrapper">
+    {% if session.username %}
+    <div class ="content">
+        <header>
+            <h2>{{ message | safe }}</h2>
+        </header>
+    </div>
+    {% endif %}
 </div>
 {% endblock %}

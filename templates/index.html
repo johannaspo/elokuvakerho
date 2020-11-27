@@ -1,24 +1,42 @@
-{% if session.username %}
 {% extends "layout.html" %}
 {% block body %}
-    <p>Olet kirjautunut nimellä {{ session.username }}</p>
-{% endblock %}
+<div class="wrapper">
+{% if session.username %}
+    <div class="content">
+        <header>
+            <h1>Huitsin Nevadan yliopiston elokuvakerho</h1>
+        </header>
+        <div class="text-block">
+            <p>Tervetuloa! Olet kirjautunut tunnuksella {{ session.username }}.</p>
+        </div>
+    </div>
 {% else %}
-    {% if message %}
-    <p class="message">{{ message | safe }}</p>
-    {% endif %}
-    <form action="/" method="POST" novalidate>
-        {{ form.csrf_token }}
-        <p>Tunnus:<br>
-        {{ form.username }}
-        {% for error in form.username.errors %}
-        <span style="color: red;">[{{ error }}]</span>
-        {% endfor %}</p>
-        <p>Salasana:<br>
-        {{ form.password }}
-        {% for error in form.password.errors %}
-        <span style="color: red;">[{{ error }}]</span>
-        {% endfor %}</p>
-        {{ form.submit }}
-    </form>
+    <div class="content">
+        <div class="login">
+            <h3>Kirjautuminen</h3>
+            <br>
+            {% if message %}
+                <p class="message">{{ message | safe }}</p>
+            {% endif %}
+            <form action="/" method="POST" novalidate>
+                {{ form.csrf_token }}
+                <p>Tunnus:<br>
+                {{ form.username }}
+                {% for error in form.username.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}</p>
+                <p>Salasana:<br>
+                {{ form.password }}
+                {% for error in form.password.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}</p>
+                <br>
+                <div class="submit">
+                    {{ form.submit }}
+                </div>
+            </form>
+        </div>
+    </div>
 {% endif %}
+</div>
+{% endblock %}

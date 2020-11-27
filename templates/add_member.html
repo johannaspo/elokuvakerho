@@ -1,62 +1,65 @@
 {% extends "layout.html" %}
-
 {% block body %}
-{% if session.show_admin %}
-<div class ="container">
-    <p>Kaikki kentät tulee täyttää</p>
-    <form action="/members/add_member" method="POST" novalidate>
-        {{ form.csrf_token }}
-        <div class="form-group">
-            <h3>Nimi:</h3>
-            {{ form.name }}
-            {% for error in form.name.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}</p>
-        </div>
-        <div class="form-group">
-            <h3>Käyttäjänimi:</h3>
-            {{ form.username }}
-            {% for error in form.username.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}</p>
-        </div>
-        <div class="form-group">
-            <h3>Salasana:</h3>
-            {{ form.password }}
-            {% for error in form.password.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}</p>
-        </div>
-        <div class="form-group">
-            <h3>Toista salasana:</h3>
-            {{ form.confirm_password }}
-            {% for error in form.confirm_password.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}</p>
-        </div>
-        <div class="form-group">
-            <h3>Sähköposti:</h3>
-            {{ form.email }}
-            {% for error in form.email.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}</p>
-        </div>
-        <div class="form-group">
-            <h3>Admin:</h3>            
-            {% for subfield in form.role %}
-                <tr>
-                    <td>{{ subfield }}</td>
-                    <td>{{ subfield.label }}</td>
-                </tr>
-            {% endfor %}
-            {% for error in form.role.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}</p>
-        </div>
-        {{ form.submit }}
-    </form>
+<div class="wrapper">
+    {% if session.show_admin %}
+    <div class ="content">
+        <header>
+            <h2>Lisää jäsen</h2>
+        </header>
+        <form action="/members/add_member" method="POST" novalidate>
+            {{ form.csrf_token }}
+            <div class="form-group">
+                <h3>Nimi:</h3>
+                {{ form.name }}
+                {% for error in form.name.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}</p>
+            </div>
+            <div class="form-group">
+                <h3>Käyttäjänimi:</h3>
+                {{ form.username }}
+                {% for error in form.username.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}</p>
+            </div>
+            <div class="form-group">
+                <h3>Salasana:</h3>
+                {{ form.password }}
+                {% for error in form.password.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}</p>
+            </div>
+            <div class="form-group">
+                <h3>Toista salasana:</h3>
+                {{ form.confirm_password }}
+                {% for error in form.confirm_password.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}</p>
+            </div>
+            <div class="form-group">
+                <h3>Sähköposti:</h3>
+                {{ form.email }}
+                {% for error in form.email.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}</p>
+            </div>
+            <div class="form-group">
+                <h3>Admin:</h3>            
+                {% for subfield in form.role %}
+                    <tr>
+                        <td>{{ subfield }}</td>
+                        <td>{{ subfield.label }}</td>
+                    </tr>
+                {% endfor %}
+                {% for error in form.role.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}</p>
+            </div>
+            {{ form.submit }}
+        </form>
+    </div>
+    {% else %}
+    <h2>Ei oikeuksia</h2>
+    {% endif %}
 </div>
-{% else %}
-<h2>Ei oikeuksia</h2>
-{% endif %}
 {% endblock %}

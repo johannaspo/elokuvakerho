@@ -1,7 +1,15 @@
 {% extends "layout.html" %}
 {% block body %}
-    <h2>Elokuvat</h2>
-    {% for film in films %}
-    <a href="film/{{ film.id }}">{{ film.name }} ({{ film.release_year }})</a> <br>
-    {% endfor %}
+<div class="wrapper">
+    {% if session.username %}
+    <div class="content">
+        <header>
+            <h2>Elokuvat</h2>
+        </header>
+        {% for film in films %}
+        <a href="film/{{ film.id }}">{{ film.name }} ({{ film.release_year }})</a> <br>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
 {% endblock %}

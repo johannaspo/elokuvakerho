@@ -1,0 +1,94 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center; 
+    background-color:rgb(240, 240, 240);
+    font-family: 'Karla', sans-serif;
+    font-size: 16px;
+    color: rgb(31, 31, 31);
+}
+
+header {
+    padding: 30px;
+    text-align: center;
+}
+
+h1 {
+    text-transform: uppercase;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 60%;
+    height: 100%;
+    padding: 50px;
+}
+
+.content {
+    width: 90%;
+    padding-top: 100px;
+    line-height: 1.6;
+}
+
+.login {
+    width: fit-content;
+    padding-top: 10vh;
+    margin: 0 auto;
+}
+
+.login h3 {
+    text-align: center;
+}
+
+.submit {
+    text-align: center;
+}
+
+.text-block {
+    text-align: center;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 13vh;
+    width: 100%;
+    background-color: rgb(89, 23, 151);;
+    font-family: 'Karla', sans-serif;
+    position: fixed;
+    z-index: 1;
+}
+
+.logo {
+    color: rgb(240, 240, 240);
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 24px;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: space-around;
+    width: 60%;
+}
+
+.nav-links li{
+    list-style: none;
+}
+
+.nav-links a {
+    color: rgb(240, 240, 240);
+    text-decoration: none;
+    letter-spacing: 2px;
+    font-weight: bold;
+    font-size: 16px;
+    text-transform: uppercase;
+}

@@ -1,34 +1,40 @@
 {% extends "layout.html" %}
-
 {% block body %}
-<h3>{{ film_name }} </h3>
-<h4>Arvostele elokuva </h4>
-<form action="{{url_for('review_film')}}" method="POST">
-    {{ form.csrf_token }}
-    <div class="form-group">
-        <p>Tähdet: 
-            {% for subfield in form.stars %}
-                <tr>
-                    <td>{{ subfield }}</td>
-                    <td>{{ subfield.label }}</td>
-                </tr>
-            {% endfor %}
-        </p>
+<div class="wrapper">
+    {% if session.username %}
+    <div class="content">
+        <header>
+            <h2>{{ film_name }}</h2>
+        </header>
+        <h4>Arvostele elokuva </h4>
+        <form action="{{url_for('review_film')}}" method="POST">
+            {{ form.csrf_token }}
+            <div class="form-group">
+                <p>Tähdet: 
+                    {% for subfield in form.stars %}
+                        <tr>
+                            <td>{{ subfield }}</td>
+                            <td>{{ subfield.label }}</td>
+                        </tr>
+                    {% endfor %}
+                </p>
+            </div>
+            <div class="form-group">
+                <p>Arvostelu:<p>
+                {{ form.text }}
+            </div>
+            {{ form.film_id }}
+            {{ form.submit }}
+        </form>
+        <h4>Arvostelut </h4>
+        <p>{{ message | safe }}</p>
+        {% for review in reviews %}
+            {{ review.date }}</br>
+            Arvostelija: {{ review.username }} </br>
+            Tähdet: {{ review.stars }} </br>
+            {{ review.text }} <hr>
+        {% endfor %}
     </div>
-    <div class="form-group">
-        <p>Arvostelu:<p>
-        {{ form.text }}
-    </div>
-    {{ form.film_id }}
-    {{ form.submit }}
-</form>
-<h4>Arvostelut </h4>
-<p>{{ message | safe }}</p>
-{% for review in reviews %}
-    {{ review.date }}</br>
-    Arvostelija: {{ review.username }} </br>
-    Tähdet: {{ review.stars }} </br>
-    {{ review.text }} <hr>
-{% endfor %}
-
+    {% endif %}
+</div>
 {% endblock %}

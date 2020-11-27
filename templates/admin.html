@@ -1,14 +1,18 @@
 {% extends "layout.html" %}
-
 {% block body %}
-{% if session.show_admin %}
-<h2>Admin</h2>
-<a href="{{ url_for('add_film') }}">Lisää elokuva</a>
-<a href="{{ url_for('members') }}">Jäsenet</a>
-<a href="{{ url_for('loans') }}">Hallitse lainoja</a>
-{% else %}
-<h2>Ei oikeuksia</h2>
-{% endif %}
-
+<div class="wrapper">
+    {% if session.show_admin %}
+    <div class="content">
+        <header>
+            <h2>Admin</h2>
+        </header>
+        <a href="{{ url_for('add_film') }}">Lisää elokuva</a>
+        <a href="{{ url_for('members') }}">Jäsenet</a>
+        <a href="{{ url_for('loans') }}">Hallitse lainoja</a>
+        {% else %}
+        <h2>Ei oikeuksia</h2>
+    </div>
+    {% endif %}
+</div>
 {% endblock %}
                 
