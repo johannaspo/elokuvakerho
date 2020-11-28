@@ -46,7 +46,8 @@ def film(id):
     release_year = film_module.get_film_release_year(id)
     description = film_module.get_film_description(id)
     checked_out = film_module.get_film_loaned(id)
-    return render_template("film.html", id=id, name=name, genre=genre, release_year=release_year, description=description, checked_out=checked_out)
+    return render_template("film.html", id=id, name=name, genre=genre, 
+           release_year=release_year, description=description, checked_out=checked_out)
     
 @app.route("/films/loan", methods=["POST"])
 def loan():
@@ -65,7 +66,8 @@ def reviews(id):
     reviews = review_module.get_reviews(id)
     message = review_module.get_reviews_stats_message(id)
     form = ReviewForm(film_id = id)
-    return render_template("reviews.html", film_name=film_name, reviews=reviews, id=id, message=message, form=form)
+    return render_template("reviews.html", film_name=film_name, reviews=reviews, id=id, 
+           message=message, form=form)
 
 @app.route("/films/review_film", methods=["POST"])
 def review_film():
@@ -83,7 +85,8 @@ def member(username):
     name = member_module.get_member_name(username)
     email = member_module.get_member_email(username)
     loans = member_module.get_member_loans(username)
-    return render_template("member.html", id=id, name=name, username=username, email=email, films=loans)
+    return render_template("member.html", id=id, name=name, username=username, 
+           email=email, films=loans)
 
 @app.route("/admin")
 def admin():

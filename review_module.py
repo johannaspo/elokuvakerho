@@ -6,7 +6,8 @@ def get_reviews_film_name(id):
     return result.fetchone()[0]
 
 def get_reviews(id):
-    sql = "SELECT TO_CHAR(timestamp, 'DD/MM/YYYY') as date, username, stars, text FROM reviews WHERE film_id=:id ORDER BY timestamp DESC"
+    sql = "SELECT TO_CHAR(timestamp, 'DD/MM/YYYY') as date, username, stars, text " \
+          "FROM reviews WHERE film_id=:id ORDER BY timestamp DESC"
     result = db.session.execute(sql, {"id":id})
     return result.fetchall()
 

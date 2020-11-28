@@ -26,3 +26,13 @@ TODO ainakin
 - ulkoasu ja käytettävyys (joihin ei ole vielä siis kiinnitetty lainkaan huomiota)
 - tietoturva
 - jos on aikaa, lisää toiminnallisuuksia, kuten elokuvan haku yms.
+
+## Välipalautus 2 ##
+
+Sovellusta pääsee käyttämään edellisen välipalautuksen yhteen merkatuilla ohjeilla. 
+
+Suurin muutos sovelluksen edelliseen tilaan on ulkoasu, ja tämän lisäksi olen refaktoroinut koodia. UUsia toiminnallisuuksia ei ole lisätty. 
+
+TODO
+- ulkoasuun pitää luultavasti tehdä vielä joitain pieniä viilauksia
+- koodia pitää käydä vielä läpi ja tarkistaa sen tyyliä

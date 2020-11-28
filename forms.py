@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
 import member_module
+from db import db
 from wtforms import StringField, PasswordField, IntegerField, TextAreaField, SubmitField, RadioField, HiddenField
 from wtforms.validators import DataRequired, NumberRange, EqualTo, Email, Length, ValidationError
 
@@ -22,8 +23,12 @@ class ReviewForm(FlaskForm):
     film_id = HiddenField("film_id")
     submit = SubmitField("Lähetä")
 
-def validate_username(form, username):
-    if member_module.duplicate_member:
+def validate_username(form, member):
+    username = form.username.data 
+    sql = "SELECT id FROM members WHERE username=:username"
+    result = db.session.execute(sql, {"username":username})
+    user = result.fetchone()
+    if user != None:
         raise ValidationError("Käyttäjänimi on jo käytössä")
 
 class AddMemberForm(FlaskForm):
