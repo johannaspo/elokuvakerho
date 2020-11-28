@@ -6,12 +6,12 @@
         <header>
             <h2>{{ film_name }}</h2>
         </header>
-        <h3>Arvostele elokuva </h3>
+        <h3 class="centered">Arvostele elokuva </h3>
         <div class="form">
             <form action="{{url_for('review_film')}}" method="POST">
                 {{ form.csrf_token }}
                 <div class="form-group">
-                    <p>Tähdet: 
+                    <h4>Tähdet: </h4>
                         {% for subfield in form.stars %}
                             <tr>
                                 <td>{{ subfield }}</td>
@@ -21,21 +21,23 @@
                     </p>
                 </div>
                 <div class="form-group">
-                    <p>Arvostelu:<p>
-                    {{ form.text(cols="55", rows="10") }}
+                    <h4>Arvostelu:</h4>
+                    {{ form.text(cols=55, rows=10, class="form-field") }}
                 </div>
                 {{ form.film_id }}
                 <div class="submit">{{ form.submit(class="button") }}</div>
             </form>
         </div>
-        <h3>Arvostelut </h3>
-        <p>{{ message | safe }}</p>
+        <hr>
+        <br>
+        <h3 class="centered">Arvostelut </h3>
+        <p class="text-block">{{ message | safe }}</p>
         {% for review in reviews %}
         <div class="boxed">
             {{ review.date }}<br>
             <b>Arvostelija:</b> <a href="{{url_for('member', username=review.username)}}">{{ review.username }}</a> <br>
-            <b>Tähdet:</b> {{ review.stars }} <br>
-            {{ review.text }}
+            <b>Tähdet:</b> {{ review.stars }}
+            <p class="line-breaks">{{ review.text }}</p>
         </div>      
         {% endfor %}
     </div>

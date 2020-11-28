@@ -6,41 +6,44 @@
         <header>
             <h2>Lisää jäsen</h2>
         </header>
+        <div class="form">
+
+        </div>
         <form action="/members/add_member" method="POST" novalidate>
             {{ form.csrf_token }}
             <div class="form-group">
                 <h3>Nimi:</h3>
-                {{ form.name }}
+                {{ form.name(size=50, class="form-field") }}
                 {% for error in form.name.errors %}
-                <span style="color: red;">[{{ error }}]</span>
+                <p style="color: red;">[{{ error }}]</p>
                 {% endfor %}</p>
             </div>
             <div class="form-group">
                 <h3>Käyttäjänimi:</h3>
-                {{ form.username }}
+                {{ form.username(size=50, class="form-field") }}
                 {% for error in form.username.errors %}
-                <span style="color: red;">[{{ error }}]</span>
+                <p style="color: red;">[{{ error }}]</p>
                 {% endfor %}</p>
             </div>
             <div class="form-group">
                 <h3>Salasana:</h3>
-                {{ form.password }}
+                {{ form.password(size=50, class="form-field") }}
                 {% for error in form.password.errors %}
-                <span style="color: red;">[{{ error }}]</span>
+                <p style="color: red;">[{{ error }}]</p>
                 {% endfor %}</p>
             </div>
             <div class="form-group">
                 <h3>Toista salasana:</h3>
-                {{ form.confirm_password }}
+                {{ form.confirm_password(size=50, class="form-field") }}
                 {% for error in form.confirm_password.errors %}
-                <span style="color: red;">[{{ error }}]</span>
+                <p style="color: red;">[{{ error }}]</p>
                 {% endfor %}</p>
             </div>
             <div class="form-group">
                 <h3>Sähköposti:</h3>
-                {{ form.email }}
+                {{ form.email(size=50, class="form-field") }}
                 {% for error in form.email.errors %}
-                <span style="color: red;">[{{ error }}]</span>
+                <p style="color: red;">[{{ error }}]</p>
                 {% endfor %}</p>
             </div>
             <div class="form-group">
@@ -52,10 +55,10 @@
                     </tr>
                 {% endfor %}
                 {% for error in form.role.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}</p>
+                <p style="color: red;">[{{ error }}]</p>
+                {% endfor %}
             </div>
-            {{ form.submit(class="button") }}
+            <div class="submit">{{ form.submit(class="button") }}</div>
         </form>
     </div>
     {% else %}

@@ -5,11 +5,18 @@
     <div class="content">
         <header>
             <h2>Jäsenet</h2>
+            <br>
             <a href="{{url_for('add_member')}}"><button class="button">Lisää jäsen</button></a>
         </header>
-        {% for member in members %}
-        <a href="member/{{ member.username }}">{{ member.username }}</a> <br>
-        {% endfor %}
+        <div class="listing">
+            <table>
+                {% for member in members %}
+                <tr>
+                    <td class="larger-line-height"><a href="member/{{ member.username }}"><h3>{{ member.username }}</h3></a></td>
+                </tr>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
     {% endif %}
 </div>

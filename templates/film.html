@@ -11,7 +11,7 @@
                     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
                 </form>
             {% endif %}
-            <a href="{{ id }}/reviews">Arvostele ja lue arvostelut</a>
+            <p class="review-link"><a href="{{ id }}/reviews">Arvostele ja lue arvostelut</a></p>
         </header>
         <div class="boxed">
             <h3>Julkaisuvuosi: </h3> {{ release_year}}
@@ -20,7 +20,8 @@
             <h3>Genre: </h3> {{ genre }}
         </div>
         <div class="boxed">
-            <h3>Kuvaus: </h3> {{ description}}
+            <h3>Kuvaus: </h3>
+            <p class="line-breaks">{{ description}}</p>
         </div>
         <div class="boxed">
             <h3>Lainassa: </h3> {{ checked_out }}

@@ -11,10 +11,10 @@ class LoginForm(FlaskForm):
 class AddFilmForm(FlaskForm):
     name = StringField("name", validators=[DataRequired(message="Nimi vaaditaan")])
     genre = StringField("genre", validators=[DataRequired(message="Genre vaaditaan")])
-    release_year = IntegerField("release_year", validators=[DataRequired(message="Julkaisuvuosi vaaditaan"), 
+    release_year = IntegerField("release_year", validators=[DataRequired(message="Julkaisuvuosi vaaditaan numerona"), 
         NumberRange(min=0, message="Vuosiluvuon on oltava positiivinen")])
     description = TextAreaField("description", validators=[DataRequired(message="Kuvaus vaaditaan")])
-    submit = SubmitField("Lähetä")
+    submit = SubmitField("Lisää elokuva")
 
 class ReviewForm(FlaskForm):
     stars = RadioField("stars", choices=[(1,1),(2,2),(3,3),(4,4),(5,5)], default=1, validators=[DataRequired()])

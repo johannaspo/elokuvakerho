@@ -6,8 +6,18 @@
         <header>
             <h1>Huitsin Nevadan yliopiston elokuvakerho</h1>
         </header>
-        <div class="text-block">
-            <p>Tervetuloa! Olet kirjautunut tunnuksella {{ session.username }}.</p>
+        <div class=centered>
+            <h3>Tervetuloa! Olet kirjautunut tunnuksella {{ session.username }}.</h3>
+        </div>
+        <div class="text">
+            <h2 class="no-underline">Toimi näin:</h2>
+            <ol>
+                <li>Etsi haluamasi elokuva kokoelmastamme, lue sen arvostelut ja katso, onko kyseinen leffa vapaana.</li>
+                <li>Mikäli elokuva on tällä hetkellä vailla katsojaa, paina lainaa-nappia.</li>
+                <li>Voit tulla hakemaan dvd:n kerhohuoneelta seuraavana päivänä klo 12.</li>
+                <li>Kun elokuva on katsottu, palauta se kerhohuoneelle. Merkitsemme sen palautetuksi.</li>
+                <li>Jätä rehellinen arvostelu katselukokemuksestasi elokuvan sivulle. Sinulla on lupa arvostella myös leffoja, jotka olet nähnyt jo aiemmin.</li>
+            </ol>
         </div>
     </div>
 {% else %}
@@ -18,17 +28,20 @@
             {% endif %}
             <form action="/" method="POST" novalidate>
                 {{ form.csrf_token }}
-                <p>Tunnus:<br>
-                {{ form.username }}
-                {% for error in form.username.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}</p>
-                <p>Salasana:<br>
-                {{ form.password }}
-                {% for error in form.password.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}</p>
-                <br>
+                <div class="form-group">
+                    <h4>Tunnus:</h4>
+                    {{ form.username(class="form-field") }}
+                    {% for error in form.username.errors %}
+                    <p style="color: red;">[{{ error }}]</p>
+                    {% endfor %}
+                </div>
+                <div class="form-group">
+                    <h4>Salasana:</h4>
+                    {{ form.password(class="form-field") }}
+                    {% for error in form.password.errors %}
+                    <p style="color: red;">[{{ error }}]</p>
+                    {% endfor %}
+                </div>
                 <div class="submit">
                     {{ form.submit(class="button") }}
                 </div>

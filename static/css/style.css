@@ -24,8 +24,16 @@ h1 {
 }
 
 h2 {
-    border-bottom: 5px solid black;
+    border-bottom: 5px solid rgb(31, 31, 31);
     display: inline-block;
+}
+
+.centered {
+    text-align: center;
+}
+
+.no-underline {
+    border-bottom: 0px;
 }
 
 a {
@@ -54,7 +62,7 @@ a:hover {
 
 .login {
     width: fit-content;
-    padding-top: 10vh;
+    padding-top: 8vh;
     margin: 0 auto;
 }
 
@@ -64,13 +72,14 @@ a:hover {
 
 .submit {
     text-align: center;
+    margin-bottom: 30px;
 }
 
 .text-block {
     text-align: center;
 }
 
-.form {
+.login form {
     width: fit-content;
     margin: 0 auto;
 }
@@ -80,6 +89,10 @@ a:hover {
     margin: 15px;
     padding: 15px; 
     border-radius: 15px;
+}
+
+.line-breaks {
+    white-space: pre-wrap;
 }
 
 nav {
@@ -129,44 +142,101 @@ nav {
     border: none;
     color: white;
     padding: 10px 20px;
-    margin: 15px;
+    margin-top: 15px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     font-size: 16px;
     font-family: 'Karla', sans-serif;
     border-radius: 10px;
   }
 
-  .button:hover {
+.button:hover {
     cursor:pointer;
     background-color: tomato;
   }
 
-  .table_background {
+.listing {
     display: flex;
-    background-color: white;
-    border-radius: 15px;
+    margin: 10px 0 60px 0;
 }
 
 table {
     border-collapse: collapse;
     width: 100%;
-    border-radius: 15px;
     overflow: hidden;
     text-align: center;
     table-layout: fixed;
+}
+
+table .button {
+    margin: 15px;
 }
 
 th {
     padding: 20px;
 }
 
-table,
 td {
     padding: 8px 8px 8px 20px;
 }
 
-tr:nth-child(even) {
+.review-link {
+    margin-top: 10px;
+}
+
+tr:nth-child(odd) {
     background-color: rgb(221, 231, 231);
+}
+
+.larger-line-height {
+    line-height: 2.5;
+}
+
+form {
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.form-group {
+    padding: 10px 0 15px 0;
+}
+
+.form-field {
+    background-color: white;
+    padding: 10px; 
+    border-radius: 10px;
+    border: 1px solid rgb(173, 173, 173);
+    font-family: 'Karla', sans-serif;
+    font-size: 16px;
+    color: rgb(31, 31, 31);
+}
+
+.inline {
+    display:flex;
+    flex-direction:row;
+    align-items: flex-end;
+}
+
+.left {
+    display:flex;
+    flex-direction:column;
+    margin-right: 20px;
+}
+
+.right {
+    display:flex;
+    flex-direction:column;
+}
+
+.text {
+    padding: 20px;
+}
+
+ol {
+    line-height: 2;
+    padding: 20px;
+}
+
+ol li {
+    padding: 10px;
 }

@@ -6,9 +6,15 @@
         <header>
             <h2>Elokuvat</h2>
         </header>
-        {% for film in films %}
-        <a href="film/{{ film.id }}">{{ film.name }} ({{ film.release_year }})</a> <br>
-        {% endfor %}
+        <div class="listing">
+            <table>
+                {% for film in films %}
+                <tr>
+                    <td class="larger-line-height"><a href="film/{{ film.id }}"><h3>{{ film.name }} ({{ film.release_year }})</h3></a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
     </div>
     {% endif %}
 </div>

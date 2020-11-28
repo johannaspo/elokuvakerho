@@ -6,9 +6,11 @@
         <header>
             <h2>Admin</h2>
         </header>
-        <a href="{{ url_for('add_film') }}">Lisää elokuva</a> <br>
-        <a href="{{ url_for('members') }}">Jäsenet</a> <br>
-        <a href="{{ url_for('loans') }}">Hallitse lainoja</a>
+        <div class="larger-line-height">
+            <h3><a href="{{ url_for('add_film') }}">Lisää elokuva</a></h3>
+            <h3><a href="{{ url_for('members') }}">Jäsenet</a></h3>
+            <h3><a href="{{ url_for('loans') }}">Hallitse lainoja</a></h3>
+        </div>
         {% else %}
         <h2>Ei oikeuksia</h2>
     </div>
