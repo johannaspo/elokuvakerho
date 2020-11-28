@@ -6,14 +6,27 @@
         <header>
             <h2>Lainatut elokuvat</h2>
         </header>
-        {% for film in films %}
-        <p>Lainaaja: {{ film.username }}</p>
-        <a href="film/{{ film.id }}">{{ film.name }} ({{ film.release_year }})</a> <br>
-        <form action="{{url_for('return_loan') }}" method="POST" >
-            <button type="submit" name="id" value="{{ film.id }}">Palauta</button>
-            <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-        </form>
-        {% endfor %}
+        <div class="table_background">
+            <table>
+                <tr>
+                    <th>Elokuva</th>
+                    <th>Lainaaja</th>
+                    <th></th>
+                </tr>
+                {% for film in films %}
+                <tr>
+                    <td><a href="film/{{ film.id }}">{{ film.name }} ({{ film.release_year }})</a></td>
+                    <td>{{ film.username }}</td>
+                    <td>
+                        <form action="{{url_for('return_loan') }}" method="POST" >
+                            <button type="submit" name="id" value="{{ film.id }}" class="button">Palauta</button>
+                            <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </table>
+        </div>
         {% else %}
         <h2>Ei oikeuksia</h2>
     </div>

@@ -4,14 +4,20 @@
     {% if session.username %}
     <div class="content">
         <header>
-            <h3>{{ name }}</h3> 
+            <h2>{{ name }}</h2> 
         </header>
-        <h3>Käyttäjätunnus: </h3>  {{ username }}
-        <h3>Sähköposti: </h3> {{ email }}
-        <h3>Lainassa: </h3>
-        {% for film in films %}
-            {{ film.name }} ({{ film.release_year }}) </br>
-        {% endfor %}  
+        <div class="boxed">
+            <h3>Käyttäjätunnus: </h3>  {{ username }}
+        </div>
+        <div class="boxed">
+            <h3>Sähköposti: </h3> {{ email }}
+        </div>
+        <div class="boxed">
+            <h3>Lainassa: </h3>
+            {% for film in films %}
+                {{ film.name }} ({{ film.release_year }}) </br>
+            {% endfor %}  
+        </div>
     </div>  
     {% endif %}
 </div>

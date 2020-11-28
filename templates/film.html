@@ -5,19 +5,26 @@
     <div class="content">
         <header>
             <h2>{{ name }}</h2>
+            {% if checked_out == "Ei" %}
+                <form action="{{url_for('loan') }}" method="POST" >
+                    <button type="submit" name="loan_film" value="{{ id }}" class="button">Lainaa</button>
+                    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+                </form>
+            {% endif %}
+            <a href="{{ id }}/reviews">Arvostele ja lue arvostelut</a>
         </header>
-    <h3>Julkaisuvuosi: </h3> {{ release_year}}
-    <h3>Genre: </h3> {{ genre }}
-    <h3>Kuvaus: </h3> {{ description}}
-    <h3>Lainassa: </h3> {{ checked_out }}
-    {% if checked_out == "Ei" %}
-        <form action="{{url_for('loan') }}" method="POST" >
-            <button type="submit" name="loan_film" value="{{ id }}">Lainaa</button>
-            <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-        </form>
-    {% endif %}
-    <br>
-    <a href="{{ id }}/reviews">Arvostele ja lue arvostelut</a>
+        <div class="boxed">
+            <h3>Julkaisuvuosi: </h3> {{ release_year}}
+        </div>
+        <div class="boxed">
+            <h3>Genre: </h3> {{ genre }}
+        </div>
+        <div class="boxed">
+            <h3>Kuvaus: </h3> {{ description}}
+        </div>
+        <div class="boxed">
+            <h3>Lainassa: </h3> {{ checked_out }}
+        </div>
     </div>
     {% endif %}
 </div>

@@ -13,8 +13,6 @@
 {% else %}
     <div class="content">
         <div class="login">
-            <h3>Kirjautuminen</h3>
-            <br>
             {% if message %}
                 <p class="message">{{ message | safe }}</p>
             {% endif %}
@@ -32,7 +30,7 @@
                 {% endfor %}</p>
                 <br>
                 <div class="submit">
-                    {{ form.submit }}
+                    {{ form.submit(class="button") }}
                 </div>
             </form>
         </div>

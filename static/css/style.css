@@ -20,6 +20,21 @@ header {
 
 h1 {
     text-transform: uppercase;
+    color: teal;
+}
+
+h2 {
+    border-bottom: 5px solid black;
+    display: inline-block;
+}
+
+a {
+    color: teal;
+    font-weight: 700;
+}
+
+a:hover {
+    color: tomato;
 }
 
 .wrapper {
@@ -55,13 +70,25 @@ h1 {
     text-align: center;
 }
 
+.form {
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.boxed {
+    background-color: white;
+    margin: 15px;
+    padding: 15px; 
+    border-radius: 15px;
+}
+
 nav {
     display: flex;
     justify-content: space-around;
     align-items: center;
     min-height: 13vh;
     width: 100%;
-    background-color: rgb(89, 23, 151);;
+    background-color: rgb(89, 23, 151);
     font-family: 'Karla', sans-serif;
     position: fixed;
     z-index: 1;
@@ -91,4 +118,55 @@ nav {
     font-weight: bold;
     font-size: 16px;
     text-transform: uppercase;
+}
+
+.nav-links a:hover {
+    color: tomato;
+}
+
+.button {
+    background-color: teal;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    margin: 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-family: 'Karla', sans-serif;
+    border-radius: 10px;
+  }
+
+  .button:hover {
+    cursor:pointer;
+    background-color: tomato;
+  }
+
+  .table_background {
+    display: flex;
+    background-color: white;
+    border-radius: 15px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    border-radius: 15px;
+    overflow: hidden;
+    text-align: center;
+    table-layout: fixed;
+}
+
+th {
+    padding: 20px;
+}
+
+table,
+td {
+    padding: 8px 8px 8px 20px;
+}
+
+tr:nth-child(even) {
+    background-color: rgb(221, 231, 231);
 }
