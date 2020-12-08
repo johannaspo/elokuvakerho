@@ -14,9 +14,19 @@
         </div>
         <div class="boxed">
             <h3>Lainassa: </h3>
-            {% for film in films %}
-                {{ film.name }} ({{ film.release_year }}) </br>
-            {% endfor %}  
+            <ul>
+                {% for film in films %}
+                <li>{{ film.name }} ({{ film.release_year }})</li>
+                {% endfor %}  
+            </ul>
+        </div>
+        <div class="boxed">
+            <h3>Arvostelut: </h3>
+            <ul>
+                {% for review in reviews %}
+                <li><a href=" {{ url_for('reviews', id=review.film_id, _anchor=review.review_id) }}">{{ review.name }} ({{ review.release_year }})</a></li>
+                {% endfor %}  
+            </ul>
         </div>
     </div>  
     {% endif %}

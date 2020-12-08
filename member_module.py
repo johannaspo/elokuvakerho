@@ -31,3 +31,9 @@ def submit_member(name, username, password, email, role):
               "VALUES (:name, :username, :password, :email, :role)"
     db.session.execute(sql, {"name":name, "username":username, "password":password, "email":email, "role":role})
     db.session.commit()
+
+def get_member_reviews(username):
+    sql = "SELECT F.name, F.release_year, F.id AS film_id, R.id AS review_id FROM films F, reviews R " \
+          "WHERE F.id = R.film_id AND R.username=:username"
+    result = db.session.execute(sql, {"username":username})
+    return result.fetchall()

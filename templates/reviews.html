@@ -40,7 +40,7 @@
         <h3 class="centered">Arvostelut </h3>
         <p class="text-block">{{ stats | safe }}</p>
         {% for review in reviews %}
-        <div class="boxed">
+        <div class="boxed" id={{ review.id }}>
             {{ review.date }}<br>
             <b>Arvostelija:</b> <a href="{{url_for('member', username=review.username)}}">{{ review.username }}</a> <br>
             <b>Tähdet:</b> {{ review.stars }}

@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-padding-top: 14vh;
+}
+
 body {
     display: flex;
     justify-content: center; 
@@ -239,6 +243,15 @@ ol {
 
 ol li {
     padding: 10px;
+}
+
+ul {
+    line-height: 2;
+    padding: 0 20px;
+}
+
+ul a {
+    font-weight: 400;
 }
 
 .review-submitted {

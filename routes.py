@@ -86,8 +86,9 @@ def member(username):
     name = member_module.get_member_name(username)
     email = member_module.get_member_email(username)
     loans = member_module.get_member_loans(username)
+    reviews = member_module.get_member_reviews(username)
     return render_template("member.html", id=id, name=name, username=username, 
-           email=email, films=loans)
+           email=email, films=loans, reviews=reviews)
 
 @app.route("/admin")
 def admin():
