@@ -60,24 +60,24 @@ def loan():
         message = "Elokuva varattu! Voit hakea elokuvan kerhotilasta aikaisintaan huomenna klo 12."
         return render_template("success.html", message=message)
 
-@app.route("/film/<int:id>/reviews")
+@app.route("/film/<int:id>/reviews", methods=["GET", "POST"])
 def reviews(id):
     film_name = review_module.get_reviews_film_name(id)
     reviews = review_module.get_reviews(id)
-    message = review_module.get_reviews_stats_message(id)
+    stats = review_module.get_reviews_stats_message(id)
     form = ReviewForm(film_id = id)
-    return render_template("reviews.html", film_name=film_name, reviews=reviews, id=id, 
-           message=message, form=form)
-
-@app.route("/films/review_film", methods=["POST"])
-def review_film():
-    if request.method == "POST":
+    message = ""
+    if form.validate_on_submit():
         film_id = request.form["film_id"]
         username = session["username"]
         stars = request.form["stars"]
         text = request.form["text"]
         review_module.post_review(film_id, username, stars, text)
-        return redirect(url_for("reviews",id=film_id))
+        reviews = review_module.get_reviews(id)
+        return render_template("reviews.html", film_name=film_name, reviews=reviews, id=id, 
+           stats=stats, message="Arvostelu lisätty!")
+    return render_template("reviews.html", film_name=film_name, reviews=reviews, id=id, 
+           stats=stats, form=form, message=message)
     
 @app.route("/member/<username>")
 def member(username):
