@@ -74,6 +74,7 @@ def reviews(id):
         text = request.form["text"]
         review_module.post_review(film_id, username, stars, text)
         reviews = review_module.get_reviews(id)
+        stats = review_module.get_reviews_stats_message(id)
         return render_template("reviews.html", film_name=film_name, reviews=reviews, id=id, 
            stats=stats, message="Arvostelu lisätty!")
     return render_template("reviews.html", film_name=film_name, reviews=reviews, id=id, 
