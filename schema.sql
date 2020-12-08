@@ -22,5 +22,9 @@ CREATE TABLE reviews (
     username TEXT,
     stars INTEGER,
     text TEXT,
-    timestamp TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
+    timestamp TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_film
+        FOREIGN KEY(film_id)
+            REFERENCES films(id)
+            ON DELETE CASCADE
 );
