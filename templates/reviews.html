@@ -6,8 +6,18 @@
         <header>
             <h2>{{ film_name }}</h2>
         </header>
+         {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="review-submitted">
+                    <p class="text-block">
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                    </p>
+                </div>
+            {% endif %}
+        {% endwith %}
         <h3 class="centered">Arvostele elokuva </h3>
-        {% if form %}
         <div class="form">
             <form action="{{url_for('reviews', id=id)}}" method="POST">
                 {{ form.csrf_token }}
@@ -29,12 +39,6 @@
                 <div class="submit">{{ form.submit(class="button") }}</div>
             </form>
         </div>
-        {% endif %}
-        {% if message %}
-        <div class="review-submitted">
-            <p class="text-block">{{ message | safe }}</p>
-        </div>
-        {% endif %}
         <hr>
         <br>
         <h3 class="centered">Arvostelut </h3>

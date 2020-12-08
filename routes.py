@@ -1,6 +1,6 @@
 from app import app
 import login_module, film_module, member_module, loan_module, review_module
-from flask import redirect, render_template, request, session, url_for
+from flask import redirect, render_template, request, session, url_for, flash
 from werkzeug.security import check_password_hash, generate_password_hash
 from forms import LoginForm, AddFilmForm, ReviewForm, AddMemberForm
 
@@ -66,17 +66,15 @@ def reviews(id):
     reviews = review_module.get_reviews(id)
     stats = review_module.get_reviews_stats_message(id)
     form = ReviewForm(film_id = id)
-    message = ""
+    message = None
     if form.validate_on_submit():
         film_id = request.form["film_id"]
         username = session["username"]
         stars = request.form["stars"]
         text = request.form["text"]
         review_module.post_review(film_id, username, stars, text)
-        reviews = review_module.get_reviews(id)
-        stats = review_module.get_reviews_stats_message(id)
-        return render_template("reviews.html", film_name=film_name, reviews=reviews, id=id, 
-           stats=stats, message="Arvostelu lisätty!")
+        flash("Arvostelu lähetetty!")
+        return redirect(url_for("reviews", id=id))
     return render_template("reviews.html", film_name=film_name, reviews=reviews, id=id, 
            stats=stats, form=form, message=message)
     

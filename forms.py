@@ -17,8 +17,14 @@ class AddFilmForm(FlaskForm):
     description = TextAreaField("description", validators=[DataRequired(message="Kuvaus vaaditaan")])
     submit = SubmitField("Lisää elokuva")
 
+def validate_stars(form, stars):
+    stars = int(form.stars.data)
+    if stars < 1 or stars > 5:
+        raise ValidationError()
+
 class ReviewForm(FlaskForm):
-    stars = RadioField("stars", choices=[(1,1),(2,2),(3,3),(4,4),(5,5)], default=1, validators=[DataRequired()])
+    stars = RadioField("stars", choices=[(1,1),(2,2),(3,3),(4,4),(5,5)], default=1, validators=[DataRequired(),
+        validate_stars])
     text = TextAreaField("text")
     film_id = HiddenField("film_id")
     submit = SubmitField("Lähetä")
