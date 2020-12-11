@@ -48,6 +48,6 @@ def get_film_loaned(id):
         return "Kyllä"
 
 def get_genres():
-    sql = "SELECT id, genre FROM genres"
+    sql = "SELECT id, genre FROM genres ORDER BY genre ASC"
     result = db.session.execute(sql)
     return result.fetchall()
