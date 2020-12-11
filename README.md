@@ -14,25 +14,10 @@ Lisäksi sivuston ylläpitäjät voivat:
 -	tarkastella mitkä elokuvat ovat lainassa ja kenellä
 -	merkata lainatun elokuvan palautetuksi
 
-## Välipalautus 1 ##
+## Lopullinen palautus ##
 
-Sovellus löytyy osoitteesta https://elokuvakerho.herokuapp.com/
+Sovellusta pääsee edelleen testaamaan adminina (tunnus ja salasana admin) tai tavallisena jäsenenä (tunnus ja salasana jasen) osoitteessa https://elokuvakerho.herokuapp.com/. 
 
-Kirjautua voi joko admin-käyttäjänä (tunnus ja salasana admin) tai tavallisena käyttäjänä (tunnus ja salasana jasen). Kaikki yllä luetellut toiminnot löytyvät sovelluksesta. Tällä hetkellä sovelluksen käyttömukavuus on valitettavasti nollissa, koska sen ulkoasua ja käytettävyyttä ei ole vielä mietitty ollenkaan.
+Tavallinen jäsen voi selata elokuvavalikoimaa, katsella elokuvan tietoja, lukea ja kirjoittaa arvosteluja (myös pelkön tähtiarvosanan antaminen on mahdollista) sekä lainata elokuvia. Lisäksi on mahdollista katsella toisten jäsenten sivuja, joilta löytyy nyt myös linkit kyseisen jäsenen kirjoittamiin arvosteluihin. Tavallinen jäsen voi löytää toisen jäsenen sivun vain elokuva-arvosteluista, joissa on linkki arvostelijan sivulle. Admin-käyttäjät näkevät admin-sivuilta jäsenlistauksen kokonaisuudessaan.
 
-TODO ainakin
-- sovelluksen rakenne, eli koodin jako tiedostoihin
-- tyylin tarkistaminen
-- ulkoasu ja käytettävyys (joihin ei ole vielä siis kiinnitetty lainkaan huomiota)
-- tietoturva
-- jos on aikaa, lisää toiminnallisuuksia, kuten elokuvan haku yms.
-
-## Välipalautus 2 ##
-
-Sovellusta pääsee käyttämään edellisen välipalautuksen yhteen merkatuilla ohjeilla. 
-
-Suurin muutos sovelluksen edelliseen tilaan on ulkoasu, ja tämän lisäksi olen refaktoroinut koodia. UUsia toiminnallisuuksia ei ole lisätty. 
-
-TODO
-- ulkoasuun pitää luultavasti tehdä vielä joitain pieniä viilauksia
-- koodia pitää käydä vielä läpi ja tarkistaa sen tyyliä
+Admin-käyttäjät voivat admin-sivujen kautta myös lisätä kerhoon uusia jäseniä, lisätä uusia elokuvia kokoelmaan ja tarkastella, mitkä elokuvat ovat lainassa sekä merkata niitä palautetuiksi. Tässä versiossa on muokattu elokuvan lisäämistä niin, että genret löytyvät valmiiksi lomakkeen genre-valikosta. Genreille on myös nyt oma taulunsa tietokannassa. Sovellusta on mahdollista jatkokehittää niin, että elokuville voisi halutessaan lisätä useamman genren.
