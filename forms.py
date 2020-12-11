@@ -11,7 +11,7 @@ class LoginForm(FlaskForm):
 
 class AddFilmForm(FlaskForm):
     name = StringField("name", validators=[DataRequired(message="Nimi vaaditaan")])
-    genre = SelectField("genre", choices=[], validators=[DataRequired(message="Genre vaaditaan"))
+    genre = SelectField("genre", choices=[], validators=[DataRequired(message="Genre vaaditaan")])
     release_year = IntegerField("release_year", validators=[DataRequired(message="Julkaisuvuosi vaaditaan numerona"), 
         NumberRange(min=0, message="Vuosiluvuon on oltava positiivinen")])
     description = TextAreaField("description", validators=[DataRequired(message="Kuvaus vaaditaan")])
