@@ -1,10 +1,13 @@
 CREATE TABLE films (
     id SERIAL NOT NULL PRIMARY KEY,
     name TEXT,
-    genre TEXT,
     release_year INTEGER,
     description TEXT,
     member_id integer
+    CONSTRAINT fk_member
+        FOREIGN KEY(member_id)
+            REFERENCES members(id)
+            ON DELETE SET NULL
 );
 
 CREATE TABLE members (
@@ -27,4 +30,15 @@ CREATE TABLE reviews (
         FOREIGN KEY(film_id)
             REFERENCES films(id)
             ON DELETE CASCADE
+);
+
+CREATE TABLE genres (
+    id SERIAL NOT NULL PRIMARY KEY,
+    genre TEXT NOT NULL
+);
+
+CREATE TABLE films_genres (
+    id SERIAL NOT NULL PRIMARY KEY,
+    film_id INTEGER NOT NULL REFERENCES films(id) ON DELETE CASCADE,
+    genre_id INTEGER NOT NULL REFERENCES genres(id) ON DELETE CASCADE
 );

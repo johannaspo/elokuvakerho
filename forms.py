@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 import member_module
 from db import db
-from wtforms import StringField, PasswordField, IntegerField, TextAreaField, SubmitField, RadioField, HiddenField
+from wtforms import StringField, PasswordField, IntegerField, TextAreaField, SubmitField, RadioField, HiddenField, SelectField
 from wtforms.validators import DataRequired, NumberRange, EqualTo, Email, Length, ValidationError
 
 class LoginForm(FlaskForm):
@@ -11,7 +11,7 @@ class LoginForm(FlaskForm):
 
 class AddFilmForm(FlaskForm):
     name = StringField("name", validators=[DataRequired(message="Nimi vaaditaan")])
-    genre = StringField("genre", validators=[DataRequired(message="Genre vaaditaan")])
+    genre = SelectField("genre", choices=[])
     release_year = IntegerField("release_year", validators=[DataRequired(message="Julkaisuvuosi vaaditaan numerona"), 
         NumberRange(min=0, message="Vuosiluvuon on oltava positiivinen")])
     description = TextAreaField("description", validators=[DataRequired(message="Kuvaus vaaditaan")])

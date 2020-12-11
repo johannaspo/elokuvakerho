@@ -215,6 +215,16 @@ form {
     color: rgb(31, 31, 31);
 }
 
+.genre {
+    background-color: white;
+    padding: 9px; 
+    border-radius: 10px;
+    border: 1px solid rgb(173, 173, 173);
+    font-family: 'Karla', sans-serif;
+    font-size: 16px;
+    color: rgb(31, 31, 31);
+}
+
 .inline {
     display:flex;
     flex-direction:row;
@@ -225,6 +235,7 @@ form {
     display:flex;
     flex-direction:column;
     margin-right: 20px;
+    width: 61%;
 }
 
 .right {

@@ -25,12 +25,18 @@ def logout():
 @app.route("/films/add_film", methods=["GET", "POST"])
 def add_film():
     form = AddFilmForm()
+    form.genre.choices = []
+    
+    for row in film_module.get_genres():
+        form.genre.choices += [(row.id, row.genre)]
+
     if form.validate_on_submit():
         name = request.form["name"]
-        genre = request.form["genre"]
         release_year = request.form["release_year"]
         description = request.form["description"]
-        film_module.add_film(name, genre, release_year, description)
+        id = film_module.add_film(name, release_year, description)
+        genre_id = form.genre.data
+        film_module.add_film_genre(id, genre_id)
         return render_template("success.html", message="Elokuva lisätty!")
     return render_template("add_film.html", form=form)
 
@@ -66,7 +72,6 @@ def reviews(id):
     reviews = review_module.get_reviews(id)
     stats = review_module.get_reviews_stats_message(id)
     form = ReviewForm(film_id = id)
-    message = None
     if form.validate_on_submit():
         film_id = request.form["film_id"]
         username = session["username"]
@@ -76,7 +81,7 @@ def reviews(id):
         flash("Arvostelu lähetetty!")
         return redirect(url_for("reviews", id=id))
     return render_template("reviews.html", film_name=film_name, reviews=reviews, id=id, 
-           stats=stats, form=form, message=message)
+           stats=stats, form=form)
     
 @app.route("/member/<username>")
 def member(username):

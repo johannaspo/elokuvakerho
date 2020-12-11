@@ -18,14 +18,14 @@
             <div class="inline">
                 <div class="left">
                     <h3>Elokuvan genre:</h3>
-                    {{ form.genre(size=30, class="form-field") }}
+                    {{ form.genre(size=1, class="genre")}}
                     {% for error in form.genre.errors %}
                     <p style="color: red;">[{{ error }}]</p>
                     {% endfor %}
                 </div>
                 <div class="right">
                     <h3>Julkaisuvuosi:</h3>
-                    {{ form.release_year(size=14, class="form-field") }}
+                    {{ form.release_year(size=15, class="form-field") }}
                     {% for error in form.release_year.errors %}
                     <p style="color: red;">[{{ error }}]</p>
                     {% endfor %}
